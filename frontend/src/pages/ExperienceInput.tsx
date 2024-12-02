@@ -1,3 +1,4 @@
+import { Box, Button, Heading, Text, Textarea, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
 
 const ExperienceInput: React.FC = () => {
@@ -10,91 +11,63 @@ const ExperienceInput: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "800px",
-        margin: "0 auto",
-        padding: "2rem",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <h2
-        style={{
-          color: "#333",
-          marginBottom: "1.5rem",
-          fontSize: "1.8rem",
-        }}
-      >
+    <Box maxW="800px" mx="auto" p={8} fontFamily="body">
+      <Heading as="h2" color="gray.700" mb={6} fontSize="1.8rem">
         Professional Experience
-      </h2>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1.5rem",
-        }}
-      >
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-        >
-          <label
-            htmlFor="experience"
-            style={{
-              fontSize: "1rem",
-              color: "#555",
-              marginBottom: "0.5rem",
+      </Heading>
+
+      <form onSubmit={handleSubmit}>
+        <VStack gap={6} align="stretch">
+          <Box>
+            <Text
+              as="label"
+              fontSize="1rem"
+              color="gray.600"
+              mb={2}
+              display="block"
+            >
+              Share your professional journey
+            </Text>
+            <Textarea
+              id="experience"
+              value={experience}
+              onChange={(e) => setExperience(e.target.value)}
+              placeholder="Describe your work experience, key achievements, and responsibilities..."
+              rows={6}
+              maxLength={2000}
+              p={4}
+              borderRadius="md"
+              borderColor="gray.300"
+              fontSize="1rem"
+              lineHeight={1.5}
+              resize="vertical"
+              minH="150px"
+              fontFamily="inherit"
+            />
+            <Text fontSize="sm" color="gray.600" textAlign="right" mt={2}>
+              {experience.length}/2000 characters
+            </Text>
+          </Box>
+
+          <Button
+            type="submit"
+            disabled={!experience.trim()}
+            bg={!experience.trim() ? "gray.300" : "blue.600"}
+            color="white"
+            px={6}
+            py={3}
+            borderRadius="md"
+            fontSize="1rem"
+            _hover={{
+              bg: !experience.trim() ? "gray.300" : "blue.700",
             }}
+            alignSelf="flex-start"
           >
-            Share your professional journey
-          </label>
-          <textarea
-            id="experience"
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)}
-            placeholder="Describe your work experience, key achievements, and responsibilities..."
-            rows={6}
-            maxLength={2000}
-            style={{
-              padding: "1rem",
-              borderRadius: "8px",
-              border: "1px solid #ccc",
-              fontSize: "1rem",
-              lineHeight: "1.5",
-              resize: "vertical",
-              minHeight: "150px",
-              fontFamily: "inherit",
-            }}
-          />
-          <span
-            style={{
-              fontSize: "0.875rem",
-              color: "#666",
-              textAlign: "right",
-            }}
-          >
-            {experience.length}/2000 characters
-          </span>
-        </div>
-        <button
-          type="submit"
-          disabled={!experience.trim()}
-          style={{
-            padding: "0.75rem 1.5rem",
-            backgroundColor: !experience.trim() ? "#ccc" : "#0066cc",
-            color: "white",
-            border: "none",
-            borderRadius: "6px",
-            fontSize: "1rem",
-            cursor: !experience.trim() ? "not-allowed" : "pointer",
-            transition: "background-color 0.2s",
-            alignSelf: "flex-start",
-          }}
-        >
-          Save Experience
-        </button>
+            Save Experience
+          </Button>
+        </VStack>
       </form>
-    </div>
+    </Box>
   );
 };
 
