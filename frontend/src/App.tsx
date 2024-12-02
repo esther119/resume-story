@@ -8,15 +8,20 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import StoryPresentation from "./pages/StoryPresentation";
+import ExperienceInput from "./pages/ExperienceInput";
 
 // Create router configuration
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <ExperienceInput />,
+  },
+  {
+    path: "/collection",
     element: <StoryPortfolio />,
   },
   {
-    path: "/story/profile-deduplication",
+    path: "/story/:storyId",
     element: <StoryPresentation />,
   },
 ]);

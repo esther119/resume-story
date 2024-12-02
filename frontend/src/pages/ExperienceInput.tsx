@@ -1,8 +1,9 @@
 import { Box, Button, Heading, Text, Textarea, VStack } from "@chakra-ui/react";
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const ExperienceInput: React.FC = () => {
   const [experience, setExperience] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,6 +63,7 @@ const ExperienceInput: React.FC = () => {
               bg: !experience.trim() ? "gray.300" : "blue.700",
             }}
             alignSelf="flex-start"
+            onClick={() => navigate("/collection")}
           >
             Save Experience
           </Button>
