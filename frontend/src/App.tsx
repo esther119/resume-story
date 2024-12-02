@@ -1,14 +1,32 @@
 import React from "react";
-import logo from "./logo.svg";
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
+import StoryPortfolio from "./pages/StoryPortfolio";
+import {
+  Route,
+  Routes,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import StoryPresentation from "./pages/StoryPresentation";
+
+// Create router configuration
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <StoryPortfolio />,
+  },
+  {
+    path: "/story/profile-deduplication",
+    element: <StoryPresentation />,
+  },
+]);
 
 function App() {
   return (
     <ChakraProvider value={defaultSystem}>
       <div className="App">
         <header className="App-header">
-          <StoryPresentation />
+          <RouterProvider router={router} />
         </header>
       </div>
     </ChakraProvider>
